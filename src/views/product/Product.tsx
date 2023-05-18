@@ -10,6 +10,7 @@ import {
   Container,
   Typography,
 } from "@mui/material";
+import "./styles/styles.scss";
 
 export default function Product() {
   const { productId } = useParams();
@@ -37,53 +38,54 @@ export default function Product() {
       }
     };
     load();
-  }, [productId, dispatch]);
+  }, [productId, dispatch, list.length]);
 
   return (
     <Container>
       {error && <Alert severity='error'>{error}</Alert>}
       {load && <CircularProgress />}
       {searchingItem && (
-        <Container>
-          <Typography variant='h2'>{searchingItem.name}</Typography>
-          <img src={searchingItem.imageUrl} alt='No img:(' />
-          <Box className='flex'>
-            <Typography marginRight={1} className='label'>
-              Count:
-            </Typography>
-            <Typography>{searchingItem.count}</Typography>
+        <Box className='flex product-view'>
+          <Box>
+            <img src={searchingItem.imageUrl} alt='No img:(' />
           </Box>
-          <Box className='flex'>
-            <Typography marginRight={1} className='label'>
-              Weight:
-            </Typography>
-            <Typography>{searchingItem.weight}g</Typography>
-          </Box>
-          <Box className='flex'>
+          <Box className='product-info flex-column'>
+            <Typography variant='h2'>{searchingItem.name}</Typography>
             <Box className='flex'>
               <Typography marginRight={1} className='label'>
-                Width:
+                Count:
               </Typography>
-              <Typography marginRight={1}>
-                {searchingItem.size.width}
-              </Typography>
+              <Typography>{searchingItem.count}</Typography>
             </Box>
             <Box className='flex'>
               <Typography marginRight={1} className='label'>
-                Height
+                Weight:
               </Typography>
-              <Typography>{searchingItem.size.height}</Typography>
+              <Typography>{searchingItem.weight}g</Typography>
+            </Box>
+            <Box className='flex'>
+              <Box className='flex'>
+                <Typography marginRight={1} className='label'>
+                  Width:
+                </Typography>
+                <Typography marginRight={1}>
+                  {searchingItem.size.width}
+                </Typography>
+              </Box>
+              <Box className='flex'>
+                <Typography marginRight={1} className='label'>
+                  Height
+                </Typography>
+                <Typography>{searchingItem.size.height}</Typography>
+              </Box>
+            </Box>
+            <Box className='flex'>
+              <Button onClick={handleDelete} variant='outlined' color='error'>
+                Delete
+              </Button>
             </Box>
           </Box>
-          <Box className='flex'>
-            <Button variant='outlined' color='secondary'>
-              Edit
-            </Button>
-            <Button onClick={handleDelete} variant='outlined' color='error'>
-              Delete
-            </Button>
-          </Box>
-        </Container>
+        </Box>
       )}
     </Container>
   );

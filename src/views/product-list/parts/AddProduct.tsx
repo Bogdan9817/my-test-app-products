@@ -86,7 +86,7 @@ export default function AddProduct({ onClose }: { onClose: () => void }) {
           type='number'
         />
       </Box>
-      <Box className='flex'>
+      <Box className='flex flex-justify-between'>
         <Button onClick={handleSubmit}>Save</Button>
         <Button color='error' onClick={handleReset}>
           Reset

@@ -9,7 +9,7 @@ export default function SideBar() {
     setModal((prev) => !prev);
   };
   return (
-    <Box className='sidebar'>
+    <Box className='sidebar flex flex-justify-center'>
       <Button onClick={triggerModal}>Add product</Button>
       <Modal open={modal} onClose={triggerModal}>
         <div>

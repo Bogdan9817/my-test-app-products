@@ -50,7 +50,9 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     getItem: (state, action) => {
-      state.searchingItem = state.list.filter((p) => p.id == action.payload)[0];
+      state.searchingItem = state.list.filter(
+        (p) => p.id === +action.payload
+      )[0];
     },
   },
   extraReducers: (builder) => {
